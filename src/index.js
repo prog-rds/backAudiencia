@@ -24,3 +24,7 @@ createUserRouter({ route: app.route('/users'), userController });
 createAssetsRouter({ route: app.route('/assets') });
 
 export default app;
+// export default {
+// 	fetch: app.fetch,
+// 	port: process.env.PORT,
+// };

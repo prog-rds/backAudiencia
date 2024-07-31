@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Interactions; --Depends on UserStudies and Ads
 DROP TABLE IF EXISTS Users;
 
 CREATE TABLE IF NOT EXISTS Users ( 
@@ -33,3 +34,50 @@ VALUES
 	'321654987',
 	'Activo' 
 );
+
+
+CREATE TABLE IF NOT EXISTS VideoStudies ( 
+	StudyCode TEXT PRIMARY KEY, 
+	VideoName TEXT,
+	Duration TEXT,
+	Link TEXT
+);
+
+CREATE TABLE IF NOT EXISTS VideoAds ( 
+	VideoAdId INTEGER PRIMARY KEY, 
+	VideoName TEXT,
+	Duration TEXT,
+	Link TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Ads ( 
+	AdId INTEGER PRIMARY KEY, 
+	StudyCode TEXT,
+	VideoAdId INTEGER,
+	AdEntryTime TEXT,
+	SkipEntryTime TEXT,
+	FOREIGN KEY (StudyCode) REFERENCES VideoStudies(StudyCode),
+	FOREIGN KEY (VideoAdId) REFERENCES VideoAds(VideoAdId)
+);
+
+
+CREATE TABLE IF NOT EXISTS UserStudies ( 
+	UserStudyId INTEGER PRIMARY KEY, 
+	UserId TEXT,
+	StudyCode TEXT,
+	StudyDate TEXT,
+	StudyTime TEXT,
+	FOREIGN KEY (UserId) REFERENCES Users(UserId),
+	FOREIGN KEY (StudyCode) REFERENCES VideoStudies(StudyCode)
+);
+
+CREATE TABLE IF NOT EXISTS Interactions ( 
+	InteractionId INTEGER PRIMARY KEY, 
+	UserStudyId INTEGER,
+	AdId INTEGER,
+	ViewTime TEXT,
+	WasSkipped TEXT,
+	FOREIGN KEY (UserStudyId) REFERENCES UserStudies(UserStudyId),
+	FOREIGN KEY (AdId) REFERENCES Ads(AdId)
+);
+
