@@ -1,8 +1,14 @@
 
 @url = {{baseUrl}}:3000
-@model = users
 
-### GET todos los Usuarios
+@model = users
+# @model = videostudies
+# @model = videoads
+# @model = ads
+# @model = userstudies
+# @model = interactions
+
+### GET root
 GET {{url}}/
 Authorization: Bearer {{token}}
 

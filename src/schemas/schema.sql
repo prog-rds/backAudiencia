@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS Ads (
 	VideoAdId INTEGER,
 	AdEntryTime TEXT,
 	SkipEntryTime TEXT,
+	IsSecundary TEXT,
 	FOREIGN KEY (StudyCode) REFERENCES VideoStudies(StudyCode),
 	FOREIGN KEY (VideoAdId) REFERENCES VideoAds(VideoAdId)
 );
