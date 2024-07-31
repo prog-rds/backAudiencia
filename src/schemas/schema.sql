@@ -1,4 +1,8 @@
 DROP TABLE IF EXISTS Interactions; --Depends on UserStudies and Ads
+DROP TABLE IF EXISTS UserStudies; --Depends on Users and VideoStudies
+DROP TABLE IF EXISTS Ads; --Depends on VideoStudies and VideoAds
+DROP TABLE IF EXISTS VideoStudies;
+DROP TABLE IF EXISTS VideoAds; 
 DROP TABLE IF EXISTS Users;
 
 CREATE TABLE IF NOT EXISTS Users ( 
