@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"module": "es6",
+		"strict": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "hono/jsx",
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": [
+				"./src/*"
+			],
+			"@styles/*": [
+				"./src/styles/*"
+			],
+			"@components/*": [
+				"./src/components/*"
+			],
+			"@assets/*": [
+				"./src/assets/*"
+			],
+			"@ico/*": [
+				"./src/assets/icons/*"
+			],
+			"@img/*": [
+				"./src/assets/images/*"
+			],
+		}
+	}
+}

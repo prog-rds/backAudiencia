@@ -1,0 +1,48 @@
+
+@url = {{baseUrl}}:3000
+@model = users
+
+### GET todos los Usuarios
+GET {{url}}/
+Authorization: Bearer {{token}}
+
+### GET todos los Usuarios
+GET {{url}}/{{model}}
+Authorization: Bearer {{token}}
+
+### GET todos los Usuarios
+GET {{url}}/{{model}}/raw
+Authorization: Bearer {{token}}
+
+### Recuperar una película por id
+GET {{url}}/{{model}}/1
+Authorization: Bearer {{token}}
+
+### Crear un USUARIO
+POST {{url}}/{{model}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+	"UserName": "Fernando.",
+	"Pass": "password1",
+	"UserRole": "Usuario",
+	"Document": "987987987",
+	"UserState": "Activo"
+}
+
+### Borrar una película
+DELETE {{url}}/{{model}}/b51acd05-1302-4df3-b625-46dd5af4a1e3
+Authorization: Bearer {{token}}
+
+
+	# "UserName": "RENOMBRADOO"
+### Actualizar una película
+PATCH {{url}}/{{model}}/eee870b1-a89b-4485-b53c-452893167d18
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+	"Points": 0
+}
+
