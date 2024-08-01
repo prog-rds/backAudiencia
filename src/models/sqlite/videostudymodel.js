@@ -40,10 +40,12 @@ export class VideoStudyModel {
 
 	async delete ({ id }) {
 		try {
+			console.log('LLEGA id: ', id);
 			const query = this.db.prepare('DELETE FROM VideoStudies WHERE StudyCode = ?');
-			const result = await query.bind(id).run();
-			return result.meta.changes > 0;
+			const result = query.run(id);
+			return result.changes > 0;
 		} catch (error) {
+			console.log('error: ', error);
 			return false;
 		}
 	}

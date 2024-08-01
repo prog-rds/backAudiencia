@@ -22,12 +22,18 @@ import { corsMiddleware } from './middlewares/cors.js';
 import { handleLogin } from './helpers/Auth.js';
 import { bearerAuth } from 'hono/bearer-auth';
 import { Hono } from 'hono';
+import { serveStatic } from 'hono/bun';
 
 const app = new Hono();
 const userController = new UserController({ model: new UserModel() });
 
 app.get('/', (c) => c.json({ healt: process.env.HEALTH, code: '001' }));
 app.use('*', corsMiddleware());
+app.use('*', async (c, next) => {
+	console.log(c.req.method, c.req.path);
+	await next();
+});
+app.get('/uploads/*', serveStatic({ directory: process.env.UPLOADS_DIR }));
 
 app.get('/login', (c) => handleLogin({ c, userController }));
 app.use('*', bearerAuth({
@@ -35,10 +41,12 @@ app.use('*', bearerAuth({
 		return token === process.env.TOKEN;
 	}
 }));
-createAssetsRouter({ route: app.route('/assets') });
+const videoStudyModel = new VideoStudyModel();
+const videoAdModel = new VideoAdModel();
+createAssetsRouter({ route: app.route('/assets'), videoStudyModel, videoAdModel });
 createUserRouter({ route: app.route('/users'), userController });
-createVideoStudyRouter({ route: app.route('/videostudies'), model: new VideoStudyModel() });
-createVideoAdRouter({ route: app.route('/videoads'), model: new VideoAdModel() });
+createVideoStudyRouter({ route: app.route('/videostudies'), model: videoStudyModel });
+createVideoAdRouter({ route: app.route('/videoads'), model: videoAdModel });
 createAdRouter({ route: app.route('/ads'), model: new AdModel() });
 createUserStudyRouter({ route: app.route('/userstudies'), model: new UserStudyModel() });
 createInteractionRouter({ route: app.route('/interactions'), model: new InteractionModel() });
