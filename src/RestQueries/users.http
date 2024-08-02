@@ -1,10 +1,10 @@
 
-@url = {{baseUrl}}:3000
+@url = {{baseUrl}}:{{port}}
 
 # @model = users
-@model = videostudies
+# @model = videostudies
 # @model = videoads
-# @model = ads
+@model = ads
 # @model = userstudies
 # @model = interactions
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ### Borrar una película
-DELETE {{url}}/{{model}}/b51acd05-1302-4df3-b625-46dd5af4a1e3
+DELETE {{url}}/{{model}}/1
 Authorization: Bearer {{token}}
 
 

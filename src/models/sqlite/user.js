@@ -17,7 +17,7 @@ export class UserModel {
 
 	async getById ({ id }) {
 		try {
-			const results = await this.db.prepare('SELECT * FROM Users WHERE UserId = ?').bind(id).all();
+			const results = this.db.prepare('SELECT * FROM Users WHERE UserId = ?').run(id);
 			if (results.length === 0)
 				return { done: false, error: 'RDS-User not found' };
 			return { done: true, results };
@@ -52,8 +52,8 @@ export class UserModel {
 		try {
 			const sets = Object.keys(i).map(k => `${k} = ?`).join(', ');
 			const query = this.db.prepare(`UPDATE Users SET ${sets} WHERE UserId = ?`);
-			const result = await query.bind(...Object.values(i), id).run();
-			return { done: true, results: result.meta.changes > 0 };
+			const result = query.run(...Object.values(i), id);
+			return { done: true, results: result.changes > 0 };
 		} catch (error) {
 			console.log('error: ', error);
 			return { done: false, error };

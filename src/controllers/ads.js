@@ -19,6 +19,7 @@ export class AdController {
 
 	create = async (c) => {
 		const body = await c.req.json();
+		console.log('body: ', body);
 		let result = validateAd(body);
 		if (!result.success)
 			return c.json({ error: 'unprocessable', message: JSON.parse(result.error.message) }, 422);

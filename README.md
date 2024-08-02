@@ -14,6 +14,7 @@ bun out/index.js
 To run as daemon:
 
 ```sh
+bun build src/index.js --outdir=out --target=bun --minify
 pm2 start --interpreter bun out/index.js
 ```
 

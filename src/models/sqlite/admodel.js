@@ -17,7 +17,7 @@ export class AdModel {
 
 	async getById ({ id }) {
 		try {
-			const results = await this.db.prepare('SELECT * FROM Ads WHERE AdId = ?').bind(id).all();
+			const results = this.db.prepare('SELECT * FROM Ads WHERE AdId = ?').run(id);
 			if (results.length === 0)
 				return { done: false, error: 'Ad not found' };
 			return { done: true, results };
@@ -41,8 +41,8 @@ export class AdModel {
 	async delete ({ id }) {
 		try {
 			const query = this.db.prepare('DELETE FROM Ads WHERE AdId = ?');
-			const result = await query.bind(id).run();
-			return result.meta.changes > 0;
+			const result = query.run(id);
+			return result.changes > 0;
 		} catch (error) {
 			return false;
 		}
