@@ -21,7 +21,7 @@ GET {{url}}/{{model}}/raw
 Authorization: Bearer {{token}}
 
 ### Recuperar una película por id
-GET {{url}}/{{model}}/1
+GET {{url}}/{{model}}/94816197_234802551210656_7836487213910065152_n
 Authorization: Bearer {{token}}
 
 ### Crear un USUARIO

@@ -13,7 +13,6 @@ export class VideoStudyController {
 	getById = async (c) => {
 		const { id } = c.req.param();
 		const res = await this.model.getById({ id, c });
-		console.log('res: ', res.error);
 		return c.json(res.done ? res.results : res.error, res.done ? 200 : 404);
 	};
 

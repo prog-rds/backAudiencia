@@ -17,7 +17,7 @@ export class VideoStudyModel {
 
 	async getById ({ id }) {
 		try {
-			const results = await this.db.prepare('SELECT * FROM VideoStudies WHERE StudyCode = ?').bind(id).all();
+			const results = this.db.prepare('SELECT * FROM VideoStudies WHERE StudyCode = ?').get(id);
 			if (results.length === 0)
 				return { done: false, error: 'VideoStudy not found' };
 			return { done: true, results };
