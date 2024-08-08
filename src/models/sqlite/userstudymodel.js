@@ -32,6 +32,8 @@ export class UserStudyModel {
 			const values = Object.keys(i).map(_ => '?').join(', ');
 			const query = this.db.prepare(`INSERT INTO UserStudies (${keys}) VALUES (${values})`);
 			const result = query.run(...Object.values(i));
+			const lastInsertId = this.db.lastInsertRowid;
+			result.UserStudyId = lastInsertId;
 			return { done: true, results: result };
 		} catch (error) {
 			return { done: false, error };
@@ -41,8 +43,8 @@ export class UserStudyModel {
 	async delete ({ id }) {
 		try {
 			const query = this.db.prepare('DELETE FROM UserStudies WHERE UserStudyId = ?');
-			const result = await query.bind(id).run();
-			return result.meta.changes > 0;
+			const result = query.run(id);
+			return result.changes > 0;
 		} catch (error) {
 			return false;
 		}

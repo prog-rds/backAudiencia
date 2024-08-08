@@ -7,7 +7,7 @@ const schema = z.object({
 	UserStudyId: z.number().int().positive(),
 	AdId: z.number().int().positive(),
 	ViewTime: z.string().regex(/^\d{2}:\d{2}$/),
-	WasSkipped: z.enum(['Omitido', 'No']).default('No'),
+	WasSkipped: z.enum(['Yes', 'No']).default('No'),
 	createdAt: z.date().optional()
 });
 

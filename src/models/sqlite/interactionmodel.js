@@ -41,8 +41,8 @@ export class InteractionModel {
 	async delete ({ id }) {
 		try {
 			const query = this.db.prepare('DELETE FROM Interactions WHERE InteractionId = ?');
-			const result = await query.bind(id).run();
-			return result.meta.changes > 0;
+			const result = query.run(id);
+			return result.changes > 0;
 		} catch (error) {
 			return false;
 		}

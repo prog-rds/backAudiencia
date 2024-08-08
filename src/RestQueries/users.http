@@ -4,9 +4,9 @@
 # @model = users
 # @model = videostudies
 # @model = videoads
-@model = ads
+# @model = ads
 # @model = userstudies
-# @model = interactions
+@model = interactions
 
 ### GET root
 GET {{url}}/
@@ -14,6 +14,10 @@ Authorization: Bearer {{token}}
 
 ### GET todos los Usuarios
 GET {{url}}/{{model}}
+Authorization: Bearer {{token}}
+
+### Borrar una película ----------DELETE-----------
+DELETE {{url}}/{{model}}/1
 Authorization: Bearer {{token}}
 
 ### GET todos los Usuarios
@@ -37,9 +41,7 @@ Content-Type: application/json
 	"UserState": "Activo"
 }
 
-### Borrar una película
-DELETE {{url}}/{{model}}/1
-Authorization: Bearer {{token}}
+
 
 
 	# "UserName": "RENOMBRADOO"
