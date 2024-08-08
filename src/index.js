@@ -18,6 +18,7 @@ import { createInteractionRouter } from '../src/routes/interactions.js';
 import { InteractionModel } from './models/sqlite/interactionmodel.js';
 
 import { createAssetsRouter } from './routes/assets.js';
+import { createReportRouter } from './routes/reports.js';
 import { corsMiddleware } from './middlewares/cors.js';
 import { handleLogin } from './helpers/Auth.js';
 import { bearerAuth } from 'hono/bearer-auth';
@@ -43,6 +44,7 @@ app.use('*', bearerAuth({
 }));
 const videoStudyModel = new VideoStudyModel();
 const videoAdModel = new VideoAdModel();
+createReportRouter({ route: app.route('/report') });
 createAssetsRouter({ route: app.route('/assets'), videoStudyModel, videoAdModel });
 createUserRouter({ route: app.route('/users'), userController });
 createVideoStudyRouter({ route: app.route('/videostudies'), model: videoStudyModel });

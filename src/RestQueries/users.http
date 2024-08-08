@@ -17,7 +17,7 @@ GET {{url}}/{{model}}
 Authorization: Bearer {{token}}
 
 ### Borrar una película ----------DELETE-----------
-DELETE {{url}}/{{model}}/1
+DELETE {{url}}/{{model}}/2
 Authorization: Bearer {{token}}
 
 ### GET todos los Usuarios
