@@ -48,6 +48,16 @@ export class InteractionModel {
 		}
 	}
 
+	async deleteAll ({ c }) {
+		try {
+			const query = this.db.prepare('DELETE FROM Interactions');
+			const result = query.run();
+			return result.changes > 0;
+		} catch (error) {
+			return false;
+		}
+	}
+
 	async update ({ id, i }) {
 		try {
 			const sets = Object.keys(i).map(k => `${k} = ?`).join(', ');

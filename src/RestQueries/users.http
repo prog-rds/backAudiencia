@@ -20,6 +20,10 @@ Authorization: Bearer {{token}}
 DELETE {{url}}/{{model}}/2
 Authorization: Bearer {{token}}
 
+### Borrar una película ----------DELETE-----------
+DELETE {{url}}/{{model}}/privateall
+Authorization: Bearer {{token}}
+
 ### GET todos los Usuarios
 GET {{url}}/{{model}}/raw
 Authorization: Bearer {{token}}

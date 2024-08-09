@@ -33,6 +33,11 @@ export class UserStudyController {
 		return c.json({ message: result ? 'UserStudy deleted' : 'UserStudy not found' }, result ? 200 : 404);
 	};
 
+	deleteAll = async (c) => {
+		const result = await this.model.deleteAll({ c });
+		return c.json({ message: result ? 'UserStudies deleted' : 'UserStudies not found' }, result ? 200 : 404);
+	};
+
 	update = async (c) => {
 		const body = await c.req.json();
 		let result = validatePartialUserStudy(body);

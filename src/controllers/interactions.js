@@ -33,6 +33,11 @@ export class InteractionController {
 		return c.json({ message: result ? 'Interaction deleted' : 'Interaction not found' }, result ? 200 : 404);
 	};
 
+	deleteAll = async (c) => {
+		const result = await this.model.deleteAll({ c });
+		return c.json({ message: result ? 'All interactions deleted' : 'No interactions found' }, result ? 200 : 404);
+	};
+
 	update = async (c) => {
 		const body = await c.req.json();
 		let result = validatePartialInteraction(body);

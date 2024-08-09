@@ -5,6 +5,7 @@ export const createUserStudyRouter = ({ route, model }) => {
 
 	route.get('/', controller.getAll);
 	route.post('/', controller.create);
+	route.delete('/privateall', controller.deleteAll);
 
 	route.get('/:id', controller.getById);
 	route.delete('/:id', controller.delete);
